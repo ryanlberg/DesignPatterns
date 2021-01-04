@@ -16,6 +16,9 @@ type displayElement interface {
 	displaty()
 }
 
+/*
+Inherets from subject interface
+*/
 type weatherData struct {
 	observers   map[observer]bool
 	temperature float32
@@ -48,18 +51,21 @@ func (wd weatherData) setMeausrements(temperature, humidity, pressure float32) {
 	wd.measurementsChanged()
 }
 
+/*
+Inherets from displayElement and from Observer
+*/
 type currentConditionDisplay struct {
 	temperature float32
 	humidity    float32
-	weatherdata weatherData
 }
 
 func (ccd currentConditionDisplay) update(temperature, humidity, pressure float32) {
 	ccd.temperature = temperature
 	ccd.humidity = humidity
+	ccd.display()
 }
 
-func (ccd currentConditionDisplay) displaty() {
+func (ccd currentConditionDisplay) display() {
 	fmt.Printf("Current conditions: %.2f F degrees\nHumidity: %.2f", ccd.temperature, ccd.humidity)
 }
 
@@ -68,5 +74,9 @@ type weatherStation struct {
 }
 
 func main() {
-	fmt.Println("Testing to see if this works")
+
+	weatherdata := weatherData{observers: make(map[observer]bool)}
+	weatherdata.registerObserver(currentConditionDisplay{})
+	weatherdata.setMeausrements(80, 65, 30.4)
+
 }
