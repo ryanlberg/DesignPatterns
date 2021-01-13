@@ -6,5 +6,5 @@
 <p>Observer pattern defines a one-to-many dependency between objects so that when one object changes state, all of its depndents are notified automatically</p>
 
 # Notes
-<b>Loose Coupling</b> - Allos us to build flexible OO system that can handle change because they minimize interdependency between objects.
+<b>Loose Coupling</b> - Allows us to build flexible OO system that can handle change because they minimize interdependency between objects.
 <p> Golang may have been a weird language choice for this study. Lack of constructors and the ability to pass functions makes me think that there are more idiomatic ways to perform some of these OO strategies.<p>
